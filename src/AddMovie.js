@@ -3,7 +3,9 @@ import { MovieContext } from './MoviesContext'
 const AddMovies = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
-    const [Movies, setmovies] = useContext(MovieContext);
+    //const [Movies, setmovies] = useContext(MovieContext);
+    const { movies, users } = useContext(MovieContext);
+    const [movieDetails, setMovieDetails] = movies;
     const updateName = e => {
         setName(e.target.value)
     }
@@ -12,7 +14,7 @@ const AddMovies = () => {
     }
     const addMovie = e => {
         e.preventDefault();
-        setmovies(prevMovies => [...prevMovies, { name: name, price: price }])
+        setMovieDetails(prevMovies => [...prevMovies, { name: name, price: price,id:prevMovies.length+1 }])
     }
     return (
         <form onSubmit={addMovie}>
